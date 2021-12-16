@@ -18,6 +18,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        @yield('script')
 
     </head>
     <body class="font-sans antialiased">
@@ -37,4 +38,5 @@
             </main>
         </div>
     </body>
+    
 </html>

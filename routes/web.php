@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function() { 
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
@@ -27,21 +24,22 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::group(['middleware' => ['auth', 'role:user']], function() { 
     Route::get('/dashboard/profile', 'App\Http\Controllers\DashboardController@profile')->name('dashboard.profile');
-    Route::get('/dashboard/purchase', 'App\Http\Controllers\PurchaseProductsController@index')->name('dashboard.purchase');
-    Route::resource('purchases', App\Http\Controllers\PurchaseProductsController::class);
+    Route::get('/dashboard/cart', 'App\Http\Controllers\CartController@index')->name('dashboard.cart');
+    Route::get('/dashboard/purchase', 'App\Http\Controllers\PurchaseController@index')->name('dashboard.purchase');
+    Route::resource('cart', App\Http\Controllers\CartController::class);
+    Route::resource('purchase', App\Http\Controllers\PurchaseController::class);
     Route::view('profile', 'profile')->name('profile');
-    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])
-        ->name('profile.update');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::group(['middleware' => ['auth', 'role:admin']], function() { 
     Route::get('/dashboard/products', 'App\Http\Controllers\ProductController@index')->name('dashboard.products');
     Route::resource('products', App\Http\Controllers\ProductController::class);
+    Route::get('/product/pdf','ProductController@createPDF');
 
 });
 
-Route::get('/search/{query}', 'App\Http\Controllers\PurchaseProductsController@search');
-Route::get('/exportexcel', [ App\Http\Controllers\ProductController::class, 'exportexcel'])->name('exportexcel');
+Route::get('/search/{query}', 'App\Http\Controllers\CartController@search');
 
 
 

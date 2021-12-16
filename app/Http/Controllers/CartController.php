@@ -6,7 +6,7 @@ use App\Models\PurchaseProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class PurchaseProductsController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,7 @@ class PurchaseProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        // $purchase = PurchaseProduct::all();
-        return view('purchases.index', ['products'=>$products]);
-        // $products= Product::orderby('product_name','asc')->get();
-        // return view('purchases.home',compact(['products']));
+        return view('cart.cart-items', ['products'=>$products]);
     }
 
     public function search($query)
@@ -36,7 +33,7 @@ class PurchaseProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('purchases.create');
     }
 
     /**

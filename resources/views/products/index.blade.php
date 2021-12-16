@@ -34,7 +34,7 @@
                     class="bg-indigo-500 mb-5  text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-3 rounded outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button">Add a Product</a>
                 </div>
-
+                               
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">

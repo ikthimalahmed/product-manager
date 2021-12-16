@@ -34,7 +34,15 @@
                 @if (Auth::user()->hasRole('user'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.purchase')" :active="request()->routeIs('dashboard.purchase')">
-                        {{ __('Purchase Products') }}
+                        {{ __('Purchase') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if (Auth::user()->hasRole('user'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.cart')" :active="request()->routeIs('dashboard.cart')">
+                        {{ __('Add to Cart') }}
                     </x-nav-link>
                 </div>
                 @endif

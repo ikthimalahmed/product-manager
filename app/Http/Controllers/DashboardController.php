@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
    {
        if(Auth::user()->hasRole('user')){
-            return view('userdash');
+            return view('user-dashboard');
        } elseif(Auth::user()->hasRole('admin')){
         return view('dashboard');
        }
@@ -18,16 +18,21 @@ class DashboardController extends Controller
 
     public function profile()
    {
-    return view('profile');
+    return view('profile.update');
    }
 
    public function products()
    {
-    return view('products');
+    return view('products.index');
+   }
+
+   public function cart()
+   {
+    return view('cart.index');
    }
 
    public function purchase()
    {
-    return view('purchases.index');
+    return view('purchase.index');
    }
 }

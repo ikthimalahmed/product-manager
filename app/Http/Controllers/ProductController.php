@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use App\Exports\ProductExport;
@@ -18,7 +19,7 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(5);
 
-        return view('products', compact('products'))
+        return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -115,10 +116,4 @@ class ProductController extends Controller
         return redirect()->route('dashboard.products')
             ->with('danger', 'Product deleted successfully');
     }
-
-    // public function exportexcel()
-    // {
-    //     return Excel::download(new ProductExport, 'students.xlsx');
-        
-    // }
 }
